@@ -51,4 +51,5 @@ dependencies {
     implementation 'com.github.yiranchunqiu:TitleBarView:1.0'
     //dialog
     implementation project(':pxzdialog')
+//    implementation 'com.github.yiranchunqiu:Dialog:1.0'
 }
