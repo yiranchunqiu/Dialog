@@ -34,7 +34,7 @@ public class ShareDialog extends BaseDialogFragment {
     /**
      * 传递实体类
      */
-    private ShareBean shareBean;
+    private ShareBean shareBean = new ShareBean();
 
     @Override
     protected void initGetData() {

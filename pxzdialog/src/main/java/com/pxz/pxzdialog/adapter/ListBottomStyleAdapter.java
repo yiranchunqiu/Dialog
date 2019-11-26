@@ -45,6 +45,11 @@ public class ListBottomStyleAdapter extends RecyclerView.Adapter<ListBottomStyle
         final ListBottomStyleListBean listBottomStyleListBean = listBottomStyleListBeans.get(position);
         holder.tvItemTitle.setText(listBottomStyleListBean.getListBottomTtile());
         holder.tvItemTitle.setTextColor(ContextCompat.getColor(context, listBottomStyleListBean.getListBottomTtileColor()));
+        if (listBottomStyleListBeans.size() - 1 == position) {
+            holder.vItemLine.setVisibility(View.GONE);
+        } else {
+            holder.vItemLine.setVisibility(View.VISIBLE);
+        }
         //点击事件
         holder.llItem.setOnClickListener(view -> {
             if (adapterOnClick != null) {
@@ -75,11 +80,13 @@ public class ListBottomStyleAdapter extends RecyclerView.Adapter<ListBottomStyle
     public class ViewHolder extends RecyclerView.ViewHolder {
         private LinearLayout llItem;
         private TextView tvItemTitle;
+        private View vItemLine;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             llItem = itemView.findViewById(R.id.ll_item);
             tvItemTitle = itemView.findViewById(R.id.tv_item_title);
+            vItemLine = itemView.findViewById(R.id.v_item_line);
         }
     }
 }

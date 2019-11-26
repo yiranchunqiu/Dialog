@@ -34,7 +34,7 @@ public class ListMiddleDialog extends BaseDialogFragment {
     /**
      * 传递实体类
      */
-    private ListMiddleBean listMiddleBean;
+    private ListMiddleBean listMiddleBean = new ListMiddleBean();
 
     @Override
     protected void initGetData() {
@@ -57,7 +57,7 @@ public class ListMiddleDialog extends BaseDialogFragment {
 
     @Override
     protected void initFindById(View mRootView) {
-        llDialog=mRootView.findViewById(R.id.ll_dialog);
+        llDialog = mRootView.findViewById(R.id.ll_dialog);
         tvDialogTitle = mRootView.findViewById(R.id.tv_dialog_title);
         rvDialog = mRootView.findViewById(R.id.rv_dialog);
         tvDialogBtn = mRootView.findViewById(R.id.tv_dialog_btn);
@@ -80,13 +80,13 @@ public class ListMiddleDialog extends BaseDialogFragment {
     protected void initListener() {
         //选择
         listMiddleAdapter.setAdapterOnClick(listMiddleListBeans -> {
-            if (onClickBtn!=null){
+            if (onClickBtn != null) {
                 onClickBtn.clickAdapter(listMiddleListBeans);
             }
         });
         //按钮点击
         tvDialogBtn.setOnClickListener(v -> {
-            if (onClickBtn!=null){
+            if (onClickBtn != null) {
                 onClickBtn.clickBtn();
             }
         });

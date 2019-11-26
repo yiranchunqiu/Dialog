@@ -4,6 +4,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.pxz.pxzdialog.BtnOneTitleDialog;
+import com.pxz.pxzdialog.BtnTwoTitleDialog;
 import com.pxz.pxzdialog.ListBottomDialog;
 import com.pxz.pxzdialog.ListBottomStyleDialog;
 import com.pxz.pxzdialog.ListMiddleDialog;
@@ -11,7 +13,9 @@ import com.pxz.pxzdialog.ShareDialog;
 import com.pxz.pxzdialog.BtnOneDialog;
 import com.pxz.pxzdialog.BtnTwoDialog;
 import com.pxz.pxzdialog.bean.BtnOneBean;
+import com.pxz.pxzdialog.bean.BtnOneTitleBean;
 import com.pxz.pxzdialog.bean.BtnTwoBean;
+import com.pxz.pxzdialog.bean.BtnTwoTitleBean;
 import com.pxz.pxzdialog.bean.ListBottomBean;
 import com.pxz.pxzdialog.bean.ListBottomListBean;
 import com.pxz.pxzdialog.bean.ListBottomStyleBean;
@@ -40,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvDialogListBottom;
     private TextView tvDialogListBottomStyle;
     private TextView tvDialogListMiddle;
+    private TextView tvDialogOneTitle;
+    private TextView tvDialogTwoTitle;
     /**
      * 实体类
      */
@@ -88,10 +94,22 @@ public class MainActivity extends AppCompatActivity {
      * 中间弹窗
      */
     private ListMiddleDialog listMiddleDialog;
-
     /**
-     *
+     * 实体类
      */
+    private BtnOneTitleBean btnOneTitleBean;
+    /**
+     * 带标题的一个按钮弹窗
+     */
+    private BtnOneTitleDialog btnOneTitleDialog;
+    /**
+     * 实体类
+     */
+    private BtnTwoTitleBean btnTwoTitleBean;
+    /**
+     * 带标题的两个个按钮弹窗
+     */
+    private BtnTwoTitleDialog btnTwoTitleDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,20 +128,26 @@ public class MainActivity extends AppCompatActivity {
         tvDialogTwo = findViewById(R.id.tv_dialog_two);
         tvDialogShare = findViewById(R.id.tv_dialog_share);
         tvDialogListBottom = findViewById(R.id.tv_dialog_list_bottom);
-        tvDialogListBottomStyle=findViewById(R.id.tv_dialog_list_bottom_style);
+        tvDialogListBottomStyle = findViewById(R.id.tv_dialog_list_bottom_style);
         tvDialogListMiddle = findViewById(R.id.tv_dialog_list_middle);
+        tvDialogOneTitle = findViewById(R.id.tv_dialog_one_title);
+        tvDialogTwoTitle = findViewById(R.id.tv_dialog_two_title);
     }
 
     private void initData() {
         //一个按钮
-        btnOneBean = new BtnOneBean(R.drawable.dialog_one_btn_1,
-                "标题栏标题栏标题栏标题栏标题栏标题栏标题栏标题栏标题栏标题栏标题栏标题栏标题栏",
-                R.color.black, R.color.blue, "确定按钮", R.color.blue, false);
+        btnOneBean = new BtnOneBean(R.drawable.dialog_btn_1,
+                "标题栏标题栏标题栏标题栏标题栏标题栏标题栏标题栏标题栏标题栏标题栏标题栏标题栏", R.color.black,
+                R.color.blue,
+                "确定按钮", R.color.blue,
+                false);
         //两个按钮
-        btnTwoBean = new BtnTwoBean(R.drawable.dialog_one_btn_1,
-                "两个按钮标题栏标题栏标题栏标题栏标题栏标题栏标题栏标题栏标题栏标题栏标题栏标题栏标题栏",
-                R.color.black, R.color.blue, "取消按钮", R.color.gray,
-                "确定按钮", R.color.blue, false);
+        btnTwoBean = new BtnTwoBean(R.drawable.dialog_btn_1,
+                "两个按钮标题栏标题栏标题栏标题栏标题栏标题栏标题栏标题栏标题栏标题栏标题栏标题栏标题栏", R.color.black,
+                R.color.blue,
+                "取消按钮", R.color.gray,
+                "确定按钮", R.color.blue,
+                false);
         //分享
         ArrayList<ShareListBean> shareListBeans = new ArrayList<>();
         shareListBeans.add(new ShareListBean("1", R.color.black, R.mipmap.fx_icon_kj));
@@ -133,7 +157,11 @@ public class MainActivity extends AppCompatActivity {
         shareListBeans.add(new ShareListBean("5", R.color.black, R.mipmap.fx_icon_wb));
         shareListBeans.add(new ShareListBean("6", R.color.black, R.mipmap.fx_icon_wx));
         shareBean = new ShareBean(R.drawable.dialog_share_1,
-                shareListBeans, 4, R.color.black, "取消", R.color.black, false);
+                shareListBeans,
+                4,
+                R.color.black,
+                "取消", R.color.gray,
+                false);
         //底部列表
         ArrayList<ListBottomListBean> listBottomListBeans = new ArrayList<>();
         listBottomListBeans.add(new ListBottomListBean("1", R.color.color_333333));
@@ -141,7 +169,9 @@ public class MainActivity extends AppCompatActivity {
         listBottomListBeans.add(new ListBottomListBean("3", R.color.color_333333));
         listBottomListBeans.add(new ListBottomListBean("4", R.color.color_333333));
         listBottomListBeans.add(new ListBottomListBean("5", R.color.color_333333));
-        listBottomBean = new ListBottomBean(listBottomListBeans, "取消", R.color.blue, false);
+        listBottomBean = new ListBottomBean(listBottomListBeans,
+                "取消", R.color.gray,
+                false);
         //底部样式列表
         ArrayList<ListBottomStyleListBean> listBottomStyleListBeans = new ArrayList<>();
         listBottomStyleListBeans.add(new ListBottomStyleListBean("1", R.color.color_333333));
@@ -149,7 +179,10 @@ public class MainActivity extends AppCompatActivity {
         listBottomStyleListBeans.add(new ListBottomStyleListBean("3", R.color.color_333333));
         listBottomStyleListBeans.add(new ListBottomStyleListBean("4", R.color.color_333333));
         listBottomStyleListBeans.add(new ListBottomStyleListBean("5", R.color.color_333333));
-        listBottomStyleBean = new ListBottomStyleBean(R.drawable.dialog_2,listBottomStyleListBeans, "取消", R.color.blue,R.drawable.dialog_2, false);
+        listBottomStyleBean = new ListBottomStyleBean(R.drawable.dialog_2,
+                listBottomStyleListBeans,
+                "取消", R.color.gray, R.drawable.dialog_2,
+                false);
         //中间列表
         ArrayList<ListMiddleListBean> listMiddleListBeans = new ArrayList<>();
         listMiddleListBeans.add(new ListMiddleListBean("1", R.color.color_333333));
@@ -157,8 +190,26 @@ public class MainActivity extends AppCompatActivity {
         listMiddleListBeans.add(new ListMiddleListBean("3", R.color.color_333333));
         listMiddleListBeans.add(new ListMiddleListBean("4", R.color.color_333333));
         listMiddleListBeans.add(new ListMiddleListBean("5", R.color.color_333333));
-        listMiddleBean = new ListMiddleBean(R.drawable.dialog_1, "选择", R.color.blue, listMiddleListBeans,
-                "取消", R.color.blue, false);
+        listMiddleBean = new ListMiddleBean(R.drawable.dialog_1,
+                "选择", R.color.blue,
+                listMiddleListBeans,
+                "取消", R.color.gray,
+                false);
+        //带标题的一个按钮
+        btnOneTitleBean = new BtnOneTitleBean(R.drawable.dialog_btn_2,
+                "标题栏", R.color.black,
+                "内容内容内容", R.color.black,
+                R.color.gray,
+                "确定按钮", R.color.blue,
+                false);
+        //带标题的两个按钮
+        btnTwoTitleBean = new BtnTwoTitleBean(R.drawable.dialog_btn_2,
+                "两个按钮标题", R.color.black,
+                "内容内容内容", R.color.black,
+                R.color.gray,
+                "取消按钮", R.color.gray,
+                "确定按钮", R.color.blue,
+                false);
     }
 
     private void initClick() {
@@ -226,7 +277,7 @@ public class MainActivity extends AppCompatActivity {
             });
         });
         tvDialogListBottomStyle.setOnClickListener(v -> {
-            listBottomStyleDialog=new ListBottomStyleDialog();
+            listBottomStyleDialog = new ListBottomStyleDialog();
             Bundle bundle = new Bundle();
             bundle.putParcelable("listBottomStyleBean", listBottomStyleBean);
             listBottomStyleDialog.setCancelable(true);
@@ -258,6 +309,33 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void clickBtn() {
                     listMiddleDialog.dismiss();
+                }
+            });
+        });
+        tvDialogOneTitle.setOnClickListener(v -> {
+            btnOneTitleDialog = new BtnOneTitleDialog();
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("btnOneTitleBean", btnOneTitleBean);
+            btnOneTitleDialog.setCancelable(true);
+            btnOneTitleDialog.setArguments(bundle);
+            btnOneTitleDialog.show(getSupportFragmentManager(), "BtnOneTitleDialog");
+            btnOneTitleDialog.setOnClickConfirm(() -> btnOneTitleDialog.dismiss());
+        });
+        tvDialogTwoTitle.setOnClickListener(v -> {
+            btnTwoTitleDialog = new BtnTwoTitleDialog();
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("btnTwoTitleBean", btnTwoTitleBean);
+            btnTwoTitleDialog.setCancelable(true);
+            btnTwoTitleDialog.setArguments(bundle);
+            btnTwoTitleDialog.show(getSupportFragmentManager(), "BtnTwoTitleDialog");
+            btnTwoTitleDialog.setOnClickBtn(new BtnTwoTitleDialog.OnClickBtn() {
+                @Override
+                public void clickBtnLeft() {
+                    btnTwoTitleDialog.dismiss();
+                }
+
+                @Override
+                public void clickBtnRight() {
                 }
             });
         });

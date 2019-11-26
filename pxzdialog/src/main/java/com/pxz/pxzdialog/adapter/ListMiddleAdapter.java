@@ -45,6 +45,11 @@ public class ListMiddleAdapter extends RecyclerView.Adapter<ListMiddleAdapter.Vi
         final ListMiddleListBean listMiddleListBean = listMiddleListBeans.get(position);
         holder.tvItemTitle.setText(listMiddleListBean.getListMiddleTtile());
         holder.tvItemTitle.setTextColor(ContextCompat.getColor(context, listMiddleListBean.getListMiddleTtileColor()));
+        if (listMiddleListBeans.size()-1==position){
+            holder.vItemLine.setVisibility(View.GONE);
+        }else{
+            holder.vItemLine.setVisibility(View.VISIBLE);
+        }
         //点击事件
         holder.llItem.setOnClickListener(view -> {
             if (adapterOnClick!=null) {
@@ -75,11 +80,13 @@ public class ListMiddleAdapter extends RecyclerView.Adapter<ListMiddleAdapter.Vi
     public class ViewHolder extends RecyclerView.ViewHolder {
         private LinearLayout llItem;
         private TextView tvItemTitle;
+        private View vItemLine;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             llItem = itemView.findViewById(R.id.ll_item);
             tvItemTitle = itemView.findViewById(R.id.tv_item_title);
+            vItemLine=itemView.findViewById(R.id.v_item_line);
         }
     }
 }

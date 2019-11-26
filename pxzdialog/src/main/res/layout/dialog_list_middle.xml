@@ -28,6 +28,7 @@
             android:paddingTop="15dp"
             android:paddingBottom="15dp"
             android:text="标题"
+            android:textStyle="bold"
             android:textColor="@color/color_333333"
             android:textSize="16sp" />
 

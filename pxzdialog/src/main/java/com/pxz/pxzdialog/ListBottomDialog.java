@@ -31,7 +31,7 @@ public class ListBottomDialog extends BaseDialogFragment {
     /**
      * 传递实体类
      */
-    private ListBottomBean listBottomBean;
+    private ListBottomBean listBottomBean = new ListBottomBean();
 
     @Override
     protected void initGetData() {
@@ -72,13 +72,13 @@ public class ListBottomDialog extends BaseDialogFragment {
     protected void initListener() {
         //选择
         listBottomAdapter.setAdapterOnClick(listBottomListBean -> {
-            if (onClickBtn!=null){
+            if (onClickBtn != null) {
                 onClickBtn.clickAdapter(listBottomListBean);
             }
         });
         //按钮点击
         tvDialogBtn.setOnClickListener(v -> {
-            if (onClickBtn!=null){
+            if (onClickBtn != null) {
                 onClickBtn.clickBtn();
             }
         });

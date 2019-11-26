@@ -9,70 +9,74 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.pxz.pxzdialog.base.BaseDialogFragment;
-import com.pxz.pxzdialog.bean.BtnOneBean;
+import com.pxz.pxzdialog.bean.BtnOneTitleBean;
 
 import androidx.core.content.ContextCompat;
 
 /**
- * 类说明：一个按钮的dialog
+ * 类说明：带标题的一个按钮的dialog
  * 联系：530927342@qq.com
  *
  * @author peixianzhong
- * @date 2019/9/12 10:18
+ * @date 2019/11/26 10:55
  */
-public class BtnOneDialog extends BaseDialogFragment {
+public class BtnOneTitleDialog extends BaseDialogFragment {
     private LinearLayout llDialog;
     private TextView tvDialogTitle;
+    private TextView tvDialogContext;
     private View vDialogLine;
     private TextView tvDialogBtn;
     private OnClickBtn onClickBtn;
     /**
      * 传递实体类
      */
-    private BtnOneBean btnOneBean = new BtnOneBean();
+    private BtnOneTitleBean btnOneTitleBean = new BtnOneTitleBean();
 
     @Override
     protected void initGetData() {
         //获取数据
         Bundle bundle = getArguments();
         if (bundle != null) {
-            btnOneBean = bundle.getParcelable("btnOneBean");
+            btnOneTitleBean = bundle.getParcelable("btnOneTitleBean");
         }
     }
 
     @Override
     protected boolean getCanceledOnTouchOutside() {
-        //点击空白是否消失
-        return btnOneBean.isCanceledOnTouchOutside();
+        return btnOneTitleBean.isCanceledOnTouchOutside();
     }
 
     @Override
     protected int getLayoutId() {
-        return R.layout.dialog_btn_one;
+        return R.layout.dialog_btn_one_title;
     }
 
     @Override
     protected void initFindById(View mRootView) {
         llDialog = mRootView.findViewById(R.id.ll_dialog);
         tvDialogTitle = mRootView.findViewById(R.id.tv_dialog_title);
+        tvDialogContext = mRootView.findViewById(R.id.tv_dialog_context);
         vDialogLine = mRootView.findViewById(R.id.v_dialog_line);
         tvDialogBtn = mRootView.findViewById(R.id.tv_dialog_btn);
     }
 
     @Override
-    protected void initData() {
-        //设置背景样式
-        llDialog.setBackgroundResource(btnOneBean.getDialogStyle());
+    protected void initData() { //设置背景样式
+        llDialog.setBackgroundResource(btnOneTitleBean.getDialogStyle());
         //设置标题文字
-        tvDialogTitle.setText(btnOneBean.getTitleText());
+        tvDialogTitle.setText(btnOneTitleBean.getTitleText());
         //设置标题颜色
-        tvDialogTitle.setTextColor(ContextCompat.getColor(getActivity(), btnOneBean.getTitleTextColor()));
+        tvDialogTitle.setTextColor(ContextCompat.getColor(getActivity(), btnOneTitleBean.getTitleTextColor()));
+        //设置标题文字
+        tvDialogContext.setText(btnOneTitleBean.getContextText());
+        //设置标题颜色
+        tvDialogContext.setTextColor(ContextCompat.getColor(getActivity(), btnOneTitleBean.getContextTextColor()));
         //设置线条颜色
-        vDialogLine.setBackgroundColor(ContextCompat.getColor(getActivity(), btnOneBean.getLineColor()));
+        vDialogLine.setBackgroundColor(ContextCompat.getColor(getActivity(), btnOneTitleBean.getLineColor()));
         //设置按钮文字
-        tvDialogBtn.setText(btnOneBean.getBtnText());
+        tvDialogBtn.setText(btnOneTitleBean.getBtnText());
         //设置按钮颜色
-        tvDialogBtn.setTextColor(ContextCompat.getColor(getActivity(), btnOneBean.getBtnTextColor()));
+        tvDialogBtn.setTextColor(ContextCompat.getColor(getActivity(), btnOneTitleBean.getBtnTextColor()));
     }
 
     @Override

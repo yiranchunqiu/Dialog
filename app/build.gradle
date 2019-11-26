@@ -48,7 +48,7 @@ dependencies {
     //检测内存泄漏
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-beta-3'
     //标题栏
-    implementation 'com.github.yiranchunqiu:TitleBarView:1.0'
+    implementation 'com.github.yiranchunqiu:TitleBarView:1.1'
     //dialog
     implementation project(':pxzdialog')
 //    implementation 'com.github.yiranchunqiu:Dialog:1.0'

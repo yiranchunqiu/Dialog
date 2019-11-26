@@ -33,7 +33,7 @@ public class ListBottomStyleDialog extends BaseDialogFragment {
     /**
      * 传递实体类
      */
-    private ListBottomStyleBean listBottomStyleBean;
+    private ListBottomStyleBean listBottomStyleBean = new ListBottomStyleBean();
 
     @Override
     protected void initGetData() {
@@ -56,7 +56,7 @@ public class ListBottomStyleDialog extends BaseDialogFragment {
 
     @Override
     protected void initFindById(View mRootView) {
-        llDialog=mRootView.findViewById(R.id.ll_dialog);
+        llDialog = mRootView.findViewById(R.id.ll_dialog);
         rvDialog = mRootView.findViewById(R.id.rv_dialog);
         tvDialogBtn = mRootView.findViewById(R.id.tv_dialog_btn);
     }
@@ -77,13 +77,13 @@ public class ListBottomStyleDialog extends BaseDialogFragment {
     protected void initListener() {
         //选择
         listBottomStyleAdapter.setAdapterOnClick(listBottomStyleListBean -> {
-            if (onClickBtn!=null){
+            if (onClickBtn != null) {
                 onClickBtn.clickAdapter(listBottomStyleListBean);
             }
         });
         //按钮点击
         tvDialogBtn.setOnClickListener(v -> {
-            if (onClickBtn!=null){
+            if (onClickBtn != null) {
                 onClickBtn.clickBtn();
             }
         });

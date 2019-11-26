@@ -9,6 +9,8 @@
        <img src="https://github.com/yiranchunqiu/Dialog/blob/master/pic/%E5%9B%BE%E7%89%874.png" width="32%">
        <img src="https://github.com/yiranchunqiu/Dialog/blob/master/pic/%E5%9B%BE%E7%89%875.png" width="32%">
        <img src="https://github.com/yiranchunqiu/Dialog/blob/master/pic/%E5%9B%BE%E7%89%876.png" width="32%">
+       <img src="https://github.com/yiranchunqiu/Dialog/blob/master/pic/%E5%9B%BE%E7%89%877.png" width="32%">
+       <img src="https://github.com/yiranchunqiu/Dialog/blob/master/pic/%E5%9B%BE%E7%89%878.png" width="32%">
 </div>
 
 ### 使用方法

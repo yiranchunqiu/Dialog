@@ -9,20 +9,21 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.pxz.pxzdialog.base.BaseDialogFragment;
-import com.pxz.pxzdialog.bean.BtnTwoBean;
+import com.pxz.pxzdialog.bean.BtnTwoTitleBean;
 
 import androidx.core.content.ContextCompat;
 
 /**
- * 类说明：两个按钮的dialog
+ * 类说明：带标题的两个按钮的dialog
  * 联系：530927342@qq.com
  *
  * @author peixianzhong
- * @date 2019/9/17 14:02
+ * @date 2019/11/26 10:55
  */
-public class BtnTwoDialog extends BaseDialogFragment {
+public class BtnTwoTitleDialog extends BaseDialogFragment {
     private LinearLayout llDialog;
     private TextView tvDialogTitle;
+    private TextView tvDialogContext;
     private View vDialogLine;
     private TextView tvDialogLeft;
     private View vDialogLine1;
@@ -31,31 +32,32 @@ public class BtnTwoDialog extends BaseDialogFragment {
     /**
      * 传递实体类
      */
-    private BtnTwoBean btnTwoBean = new BtnTwoBean();
+    private BtnTwoTitleBean btnTwoTitleBean = new BtnTwoTitleBean();
 
     @Override
     protected void initGetData() {
         //获取数据
         Bundle bundle = getArguments();
         if (bundle != null) {
-            btnTwoBean = bundle.getParcelable("btnTwoBean");
+            btnTwoTitleBean = bundle.getParcelable("btnTwoTitleBean");
         }
     }
 
     @Override
     protected boolean getCanceledOnTouchOutside() {
-        return btnTwoBean.isCanceledOnTouchOutside();
+        return btnTwoTitleBean.isCanceledOnTouchOutside();
     }
 
     @Override
     protected int getLayoutId() {
-        return R.layout.dialog_btn_two;
+        return R.layout.dialog_btn_two_title;
     }
 
     @Override
     protected void initFindById(View mRootView) {
         llDialog = mRootView.findViewById(R.id.ll_dialog);
         tvDialogTitle = mRootView.findViewById(R.id.tv_dialog_title);
+        tvDialogContext = mRootView.findViewById(R.id.tv_dialog_context);
         vDialogLine = mRootView.findViewById(R.id.v_dialog_line);
         tvDialogLeft = mRootView.findViewById(R.id.tv_dialog_left);
         vDialogLine1 = mRootView.findViewById(R.id.v_dialog_line_1);
@@ -65,23 +67,27 @@ public class BtnTwoDialog extends BaseDialogFragment {
     @Override
     protected void initData() {
         //设置背景样式
-        llDialog.setBackgroundResource(btnTwoBean.getDialogStyle());
+        llDialog.setBackgroundResource(btnTwoTitleBean.getDialogStyle());
         //设置标题文字
-        tvDialogTitle.setText(btnTwoBean.getTitleText());
+        tvDialogTitle.setText(btnTwoTitleBean.getTitleText());
         //设置标题颜色
-        tvDialogTitle.setTextColor(ContextCompat.getColor(getActivity(), btnTwoBean.getTitleTextColor()));
+        tvDialogTitle.setTextColor(ContextCompat.getColor(getActivity(), btnTwoTitleBean.getTitleTextColor()));
+        //设置标题文字
+        tvDialogContext.setText(btnTwoTitleBean.getContextText());
+        //设置标题颜色
+        tvDialogContext.setTextColor(ContextCompat.getColor(getActivity(), btnTwoTitleBean.getContextTextColor()));
         //设置线条颜色
-        vDialogLine.setBackgroundColor(ContextCompat.getColor(getActivity(), btnTwoBean.getLineColor()));
+        vDialogLine.setBackgroundColor(ContextCompat.getColor(getActivity(), btnTwoTitleBean.getLineColor()));
         //设置左边按钮文字
-        tvDialogLeft.setText(btnTwoBean.getBtnLeftText());
+        tvDialogLeft.setText(btnTwoTitleBean.getBtnLeftText());
         //设置左边按钮颜色
-        tvDialogLeft.setTextColor(ContextCompat.getColor(getActivity(), btnTwoBean.getBtnLeftTextColor()));
+        tvDialogLeft.setTextColor(ContextCompat.getColor(getActivity(), btnTwoTitleBean.getBtnLeftTextColor()));
         //设置线条颜色
-        vDialogLine1.setBackgroundColor(ContextCompat.getColor(getActivity(), btnTwoBean.getLineColor()));
+        vDialogLine1.setBackgroundColor(ContextCompat.getColor(getActivity(), btnTwoTitleBean.getLineColor()));
         //设置右边按钮文字
-        tvDialogRight.setText(btnTwoBean.getBtnRightText());
+        tvDialogRight.setText(btnTwoTitleBean.getBtnRightText());
         //设置右边按钮颜色
-        tvDialogRight.setTextColor(ContextCompat.getColor(getActivity(), btnTwoBean.getBtnRightTextColor()));
+        tvDialogRight.setTextColor(ContextCompat.getColor(getActivity(), btnTwoTitleBean.getBtnRightTextColor()));
     }
 
     @Override
