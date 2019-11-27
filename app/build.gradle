@@ -50,6 +50,6 @@ dependencies {
     //标题栏
     implementation 'com.github.yiranchunqiu:TitleBarView:1.1'
     //dialog
-    implementation project(':pxzdialog')
-//    implementation 'com.github.yiranchunqiu:Dialog:1.0'
+//    implementation project(':pxzdialog')
+    implementation 'com.github.yiranchunqiu:Dialog:1.1'
 }
