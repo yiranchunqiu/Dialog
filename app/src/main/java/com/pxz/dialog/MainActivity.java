@@ -2,6 +2,8 @@ package com.pxz.dialog;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.View;
 import android.widget.TextView;
 
 import com.pxz.pxzdialog.BtnOneTitleDialog;
@@ -9,6 +11,7 @@ import com.pxz.pxzdialog.BtnTwoTitleDialog;
 import com.pxz.pxzdialog.ListBottomDialog;
 import com.pxz.pxzdialog.ListBottomStyleDialog;
 import com.pxz.pxzdialog.ListMiddleDialog;
+import com.pxz.pxzdialog.NetworkLoadingDialog;
 import com.pxz.pxzdialog.ShareDialog;
 import com.pxz.pxzdialog.BtnOneDialog;
 import com.pxz.pxzdialog.BtnTwoDialog;
@@ -22,13 +25,19 @@ import com.pxz.pxzdialog.bean.ListBottomStyleBean;
 import com.pxz.pxzdialog.bean.ListBottomStyleListBean;
 import com.pxz.pxzdialog.bean.ListMiddleBean;
 import com.pxz.pxzdialog.bean.ListMiddleListBean;
+import com.pxz.pxzdialog.bean.NetworkLoadingBean;
 import com.pxz.pxzdialog.bean.ShareBean;
 import com.pxz.pxzdialog.bean.ShareListBean;
+import com.pxz.pxznetwork.HttpUtil;
+import com.pxz.pxznetwork.LogUtil;
 
 import java.util.ArrayList;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * 类说明：首页
@@ -46,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvDialogListMiddle;
     private TextView tvDialogOneTitle;
     private TextView tvDialogTwoTitle;
+    private TextView tvDialogNetworkLoading;
     /**
      * 实体类
      */
@@ -110,6 +120,14 @@ public class MainActivity extends AppCompatActivity {
      * 带标题的两个个按钮弹窗
      */
     private BtnTwoTitleDialog btnTwoTitleDialog;
+    /**
+     * 实体类
+     */
+    private NetworkLoadingBean networkLoadingBean;
+    /**
+     * 带标题的两个个按钮弹窗
+     */
+    private NetworkLoadingDialog networkLoadingDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
         tvDialogListMiddle = findViewById(R.id.tv_dialog_list_middle);
         tvDialogOneTitle = findViewById(R.id.tv_dialog_one_title);
         tvDialogTwoTitle = findViewById(R.id.tv_dialog_two_title);
+        tvDialogNetworkLoading = findViewById(R.id.tv_dialog_network_loading);
     }
 
     private void initData() {
@@ -210,6 +229,8 @@ public class MainActivity extends AppCompatActivity {
                 "取消按钮", R.color.gray,
                 "确定按钮", R.color.blue,
                 false);
+        networkLoadingBean = new NetworkLoadingBean(R.drawable.dialog_network, R.drawable.progress_network_1,
+                "请求中", R.color.blue, true);
     }
 
     private void initClick() {
@@ -338,6 +359,30 @@ public class MainActivity extends AppCompatActivity {
                 public void clickBtnRight() {
                 }
             });
+        });
+        tvDialogNetworkLoading.setOnClickListener(v -> {
+            networkLoadingDialog = new NetworkLoadingDialog();
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("networkLoadingBean", networkLoadingBean);
+            networkLoadingDialog.setCancelable(true);
+            networkLoadingDialog.setArguments(bundle);
+            networkLoadingDialog.show(getSupportFragmentManager(), "NetworkLoadingDialog");
+            HttpUtil httpUtil = new HttpUtil("https://weatherapi.market.xiaomi.com");
+            Disposable subscribe = httpUtil.createService(ApiInfo.class)
+                    .weatherXiaomi("0", "0", "weathercn:101220101", "1",
+                            "weather20151024", "zUFJoAR2ZVrDy1vF3D07", "false", "zh_cn")
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                            o -> {
+                                networkLoadingDialog.dismiss();
+                                LogUtil.d("测试", "请求成功");
+                            },
+                            throwable -> {
+                                networkLoadingDialog.dismiss();
+                                LogUtil.d("测试", "请求失败");
+                            }
+                    );
         });
     }
 }

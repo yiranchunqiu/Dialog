@@ -49,6 +49,8 @@ dependencies {
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-beta-3'
     //标题栏
     implementation 'com.github.yiranchunqiu:TitleBarView:1.1'
+    //网络
+    implementation 'com.github.yiranchunqiu:Network:1.0'
     //dialog
     implementation project(':pxzdialog')
 //    implementation 'com.github.yiranchunqiu:Dialog:1.1'

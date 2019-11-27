@@ -8,7 +8,7 @@
     </style>
 
     <!-- 基础dialog -->
-    <style name="CustomDialog" parent="@style/AppTheme">
+    <style name="CustomDialog" parent="Theme.AppCompat.Light.Dialog">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:windowIsFloating">true</item>
@@ -18,6 +18,15 @@
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:backgroundDimAmount">0.5</item>
+    </style>
+
+    <!-- 网络加载progress样式 -->
+    <style name="progress_network">
+        <item name="android:indeterminateDrawable">@drawable/progress_network</item>
+        <item name="android:minWidth">25dp</item>
+        <item name="android:minHeight">25dp</item>
+        <item name="android:maxWidth">60dp</item>
+        <item name="android:maxHeight">60dp</item>
     </style>
 
     <!-- dialog动画 -->
