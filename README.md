@@ -28,6 +28,6 @@ allprojects {
 
 ```
  	dependencies {
-    	        implementation 'com.github.yiranchunqiu:Dialog:1.0'
+    	        implementation 'com.github.yiranchunqiu:Dialog:1.1'
     	}
 ```
