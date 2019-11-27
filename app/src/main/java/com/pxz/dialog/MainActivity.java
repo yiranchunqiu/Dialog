@@ -230,7 +230,7 @@ public class MainActivity extends AppCompatActivity {
                 "确定按钮", R.color.blue,
                 false);
         networkLoadingBean = new NetworkLoadingBean(R.drawable.dialog_network, R.drawable.progress_network_1,
-                "请求中", R.color.blue, true);
+                "请求中", R.color.blue, false);
     }
 
     private void initClick() {
