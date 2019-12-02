@@ -229,6 +229,7 @@ public class MainActivity extends AppCompatActivity {
                 "取消按钮", R.color.gray,
                 "确定按钮", R.color.blue,
                 false);
+        //网络进度条
         networkLoadingBean = new NetworkLoadingBean(R.drawable.dialog_network, R.drawable.progress_network_1,
                 "请求中", R.color.blue, false);
     }
